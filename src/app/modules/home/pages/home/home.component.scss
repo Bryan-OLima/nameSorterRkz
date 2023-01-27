@@ -1,0 +1,70 @@
+:host, form, main{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 20px;
+    
+    font-size: 2rem;
+    color: #F3E8D5;
+    text-shadow: 5px 0px 10px #000000;
+
+    section {
+        display: flex;
+        flex-direction: row;
+        gap: 40px;
+    }
+
+    main {
+        background-image: url(../../../../../assets/imgs/fundo.png);
+        background-size: cover;
+
+        box-shadow: 0 0 10px black;
+        border-radius: 5px;
+        margin-top: 20px;
+
+        width: 500px;
+        margin-top: -50px;
+        padding-bottom: 30px;
+    }
+    .avatar {
+        height: 150px;
+        width: auto;
+        z-index: 1;
+        margin-top: 30px;
+    }
+
+    ::placeholder{
+        text-align: center;
+        color: rgb(170, 170, 170);
+    }
+    
+    input {
+        text-align: center;
+
+        font-size: 1.5rem;
+    }
+
+    button:disabled, button:disabled:hover{
+        background-color: rgba($color: grey, $alpha: 0.5);
+        cursor: default;
+    }
+
+    button {
+        font-size: 1.5rem;
+        border: none;
+        background-color: #f84a90;
+        transition: 500ms;
+    }
+    
+    button:hover {
+        background-color: #fc1d76;
+        transition: 500ms;
+    }
+
+    button, input {
+        width: 300px;
+        height: 50px;
+        border-radius: 4px;
+    }
+}

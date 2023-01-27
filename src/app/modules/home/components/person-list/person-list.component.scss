@@ -1,0 +1,18 @@
+:host {
+    h1 {
+        transform: rotate(-5deg);
+    }
+    
+    .emoji { 
+        width: 20px;
+        height: auto;
+        margin-right: 5px;
+    }
+
+    .list {
+        margin-top: 20px;
+    }
+    span {
+        max-width: 360px;
+    }
+}

@@ -1,0 +1,31 @@
+<section>
+    <div class="card">
+        <img src="../../../../../assets/imgs/Avatar.png" alt="" class="avatar">
+        <main>
+            <h1>Sorteio</h1>
+            <form>
+                <input type="text" [(ngModel)]="name" placeholder="Insira um nick aqui" name="name" maxlength="16"> 
+                <input type="text" [(ngModel)]="reward" placeholder="Insira um prêmio aqui" name="reward" maxlength="23"> 
+            </form>
+            <button *ngIf="!name || !reward; else enabled" disabled>Enviar</button>
+            <ng-template #enabled>
+                <button (click)="confirmation(name, reward)">Enviar</button>
+            </ng-template>
+        </main>
+    </div>
+    
+    <div class="card">
+        <img src="../../../../../assets/imgs/Avatar.png" alt="" class="avatar" (click)="cleanList()">
+        <main>
+            <app-person-list
+                [personList]="dataSource"
+            >
+            </app-person-list>
+            
+            <button (click)="getRandom()">Gaivota Vencedora</button>
+            <div *ngFor="let winner of randomPerson">
+                {{winner.name}} - {{winner.reward}}
+            </div>
+        </main>
+    </div>
+</section>
