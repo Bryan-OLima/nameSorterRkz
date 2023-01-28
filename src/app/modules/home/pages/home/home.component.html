@@ -21,11 +21,8 @@
                 [personList]="dataSource"
             >
             </app-person-list>
-            
-            <button (click)="getRandom()">Gaivota Vencedora</button>
-            <div *ngFor="let winner of randomPerson">
-                {{winner.name}} - {{winner.reward}}
-            </div>
+
+            <button class="button" (click)="openDialog()">Gaivota Vencedora</button>
         </main>
     </div>
 </section>

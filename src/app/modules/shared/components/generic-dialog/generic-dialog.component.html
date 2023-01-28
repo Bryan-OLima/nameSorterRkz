@@ -1,0 +1,10 @@
+<main class="dialog">
+    <div *ngIf="winner == 'E o vencendor é...'; else win" class="typing">
+        {{winner}}
+    </div>
+    <ng-template #win> 
+        <div *ngFor="let winner of randomPerson">
+            {{winner.name}} - {{winner.reward}}
+        </div>
+    </ng-template>
+</main>

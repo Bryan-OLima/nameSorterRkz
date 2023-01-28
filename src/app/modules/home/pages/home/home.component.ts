@@ -1,14 +1,16 @@
-import { Component, DoCheck, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { LocalStorageService } from 'src/app/services/local-storage.service';
 import { Person } from '../../model/person';
-import { throwError } from 'rxjs';
+
+import { MatDialog } from '@angular/material/dialog';
+import { GenericDialogComponent } from 'src/app/modules/shared/components/generic-dialog/generic-dialog.component';
 
 @Component({
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss']
 })
-export class HomeComponent implements OnInit, DoCheck {
+export class HomeComponent implements OnInit {
 
   public name: string = '';
   public reward: string = '';
@@ -16,17 +18,16 @@ export class HomeComponent implements OnInit, DoCheck {
   public randomIndex!: number;
   public randomPerson: Person[] = [];
 
+  public isOpen: boolean = false;
+
   public receiverData: any = this._localStorageService.getLocalStorage();
 
   public dataSource: Array<Person> = [];
 
   constructor(
-    private _localStorageService: LocalStorageService
-  ) {
-
-  }
-  ngDoCheck(): void {
-  }
+    private _localStorageService: LocalStorageService,
+    public dialog: MatDialog
+  ) {}
 
   ngOnInit(): void {
    if(this.receiverData){
@@ -63,15 +64,6 @@ export class HomeComponent implements OnInit, DoCheck {
     this.name = ''
   }
 
-  getRandom() {
-    if(this.dataSource.length == 0){
-      alert('Lista vazia');
-    } else {
-      this.randomIndex = Math.floor(Math.random() * this.dataSource.length);
-      this.randomPerson.push(this.dataSource[this.randomIndex]);
-    }
-  }
-
   cleanList() {
     const message: string = 'Você tem certeza que deseja LIMPAR A LISTA?';
     const error: string = 'Não há o que deletar!'
@@ -82,6 +74,16 @@ export class HomeComponent implements OnInit, DoCheck {
         this.dataSource = [];
         this.save(this.dataSource);
       }
+
+      this.randomPerson = [];
     }
+  }
+
+  openDialog(){
+    this.dialog.open(GenericDialogComponent, {
+      data: this.dataSource,
+      height: '400px',
+      width: '600px',
+    })
   }
 }
